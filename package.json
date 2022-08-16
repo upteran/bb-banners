@@ -1,0 +1,22 @@
+{
+  "name": "bb-banner",
+  "version": "0.0.1",
+  "description": "bb canvas banners",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://vcs.bingo-boom.ru/site-ng/frontend/bb-banner.git"
+  },
+  "author": "bb-team",
+  "license": "ISC",
+  "dependencies": {
+    "pixi-spine": "^3.1.0",
+    "pixi.js": "^6.5.1",
+    "vite": "^3.0.7"
+  }
+}
