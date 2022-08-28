@@ -1,4 +1,5 @@
-import {EFFECT} from "https://mrmirka.github.io/FutureBanner/js/effect.js";
+import * as PIXI from 'pixi.js';
+import {EFFECT} from "../../effect";
 function b1Init(bannerContainer, params, app, textures){
 	let count = 0; //Global counter
 

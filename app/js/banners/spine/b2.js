@@ -1,3 +1,4 @@
+import { Spine } from 'pixi-spine';
 //import {EFFECT} from '../js/effect.js';
 function b2Init(bannerContainer, params, app, textures){
     app.loader.destroy(); //Нужно очистить ресурсы перед повторным запуском (временное решение)
@@ -7,7 +8,7 @@ function b2Init(bannerContainer, params, app, textures){
     //app.stage.interactive = true;
 
     function onRiderLoader(name, res){
-        const rider = new PIXI.spine.Spine(res.rider.spineData);
+        const rider = new Spine(res.rider.spineData);
         rider.interactive = true;
     
         rider.skeleton.setSkinByName('default');

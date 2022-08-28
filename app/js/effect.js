@@ -1,3 +1,4 @@
+import * as PIXI from 'pixi.js';
 import { smoke } from "../data/effects/smoke.js";
 import { caustic } from "../data/effects/caustic.js";
 let effect, params, value;
@@ -16,7 +17,7 @@ class EFFECT {
 
             case 'caustic':
                 value = caustic(params);
-                return new PIXI.Filter(undefined, value.f, value.u);    
+                return new PIXI.Filter(undefined, value.f, value.u);
         };
     };
 }

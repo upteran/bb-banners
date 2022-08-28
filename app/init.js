@@ -1,18 +1,9 @@
-import { CONTAINER } from './js/container.js';
 import { getDeviceType } from './js/helpers';
-import { uiControllersInit } from "./js/render/uiControllersInit";
-import { bannerCreator } from './bannerCreator';
+import { BannerBuilder } from './bannerCreator';
 
-bannerCreator();
-
-let params = {
+let canvasConfig = {
     steps: [1,2], //Порядок баннеров в очереди на отображение
     filter: undefined,
-    scaleFactor: (document.getElementById('c').offsetWidth) / 1600, //Коэфициент маштабирования, 1600 - исходное изображения бекграунда в пикселях
-    canvasSize: {
-        width: document.getElementById('c').offsetWidth ,
-        height: document.getElementById('c').offsetHeight ,
-    },
     screenSize : {
         width : window.innerWidth,
         height : window.innerHeight,
@@ -20,13 +11,15 @@ let params = {
     deviceType: getDeviceType()
 };
 
+const contentData = {
+    title: 'Some custom title',
+    description: 'Some description',
+    btnTitle: 'IM Button'
+}
 
-//Инициируем корневой блок
-const mainBlock = new CONTAINER(params);
-mainBlock.init();
-mainBlock.startTransition(1);
+const bannerBuilder = new BannerBuilder({ id: 'banner-c', canvasConfig, data: contentData });
 
-uiControllersInit(mainBlock);
+bannerBuilder.render();
 
 
 

@@ -3,9 +3,9 @@ import 'pixi-spine';
 import { BANNER } from './banner.js';
 import { getJSON } from './json_manager.js';
 import { simpleDark } from "../data/effects/simpleDark.js";
+import banners from '../data/banners/banners.json'; //Массив данных из JSON файла
 let app;
-let banners; //Массив данных из JSON файла
-let bannerUrl = '/data/banners/banners.json'; //Путь к JSON файлу с описанием баннеров
+// let bannerUrl = '../data/banners/banners.json'; //Путь к JSON файлу с описанием баннеров
 let currentBanner; //По умолчанию стартует первый баннер в очереди
 let textures = []; //Хранилище текстур для всех баннеров
 
@@ -21,9 +21,10 @@ let btnArrow;
 
 
 class CONTAINER {
-    constructor (params){
+    constructor (params, view){
         parameters = params;
         currentBanner = parameters.steps[0];
+        this.view = view;
     };
 
     //Инициализация сцены
@@ -32,16 +33,19 @@ class CONTAINER {
             width: parameters.canvasSize.width,
             height: parameters.canvasSize.height,
             antialias: true,
-            view: document.getElementById('c')
+            view: this.view.getElementById('c')
         });
-        document.body.appendChild(app.view);
+        this.view.appendChild(app.view);
 
         mainBlock = new PIXI.Container(); //Корневой контейнер, в него помещаем контйнеры и сбаннерами (один баннер - один контейнер)
         //mainBlock.scale.set(parameters.scaleFactor, parameters.scaleFactor); //Маштабирует изображения при изменении исходного размера контейнере
         
         app.stage.addChild(mainBlock);
 
-        getObjFromJson(parameters); //Забираем данные банеров и отправляем на инициализацию
+        // запись в параметр для передачи в другие функции
+        parameters.view = this.view;
+
+        loaderTextures(banners, parameters); //Забираем данные банеров и отправляем на инициализацию
         
         /*
         let canvas = app.renderer.view;
@@ -63,15 +67,15 @@ class CONTAINER {
 
     //Сменить банер на предыдущий в очереди.
     toLeft(button){
-        if(banners != undefined) {
-            shiftBanner(-1, button);
+        if(banners) {
+            shiftBanner(1, button);
         }
     };
 
 
     //Сменить банер напоследующий в очереди.
     toRight(button){
-        if(banners != undefined) {
+        if(banners) {
             shiftBanner(1, button);
         }
     };
@@ -124,17 +128,7 @@ class CONTAINER {
     }
 }
 
-//Возвращает массив объектов bannerData. (путь к данным баннера на диске, тип баннера).
-//Инициируем отрисовку банеров
-function getObjFromJson(params){
-   let loader = getJSON(bannerUrl);
-   loader.onload = () => {
-    banners = loader.response;
-    if(banners != undefined) {
-        loaderTextures(banners, params);
-    }
-    };
-};
+// end class
 
 
 //Выбираем баннер из массива данных и отрисовываем его
@@ -203,9 +197,10 @@ function shiftBanner(shift, button){
     let step = currentInQueue + shift;
     if(step > parameters.steps.length-1) {
         nextPosition = parameters.steps[0];
-    }else{
+    } else {
         nextPosition = parameters.steps[step];
     }
+    console.log('asdasd', nextPosition)
     if(nextPosition != undefined) {
         let banner = getBannerByPosition(nextPosition);
         button.interactive = false;
