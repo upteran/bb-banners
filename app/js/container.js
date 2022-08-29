@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js';
-import 'pixi-spine';
+// import 'pixi-spine';
 import { BANNER } from './banner.js';
-import { getJSON } from './json_manager.js';
+// import { getJSON } from './json_manager.js';
 import { simpleDark } from "../data/effects/simpleDark.js";
 import banners from '../data/banners/banners.json'; //Массив данных из JSON файла
 let app;
@@ -104,16 +104,16 @@ class CONTAINER {
     startTransition(shift){
         let value;
         switch(shift){
-            case 1: 
+            case 1:
                 value = simpleDark(parameters);
                 initBgTransition(value);
                 easyOut();
                 break;
             default:
-                value = simpleDark(parameters);   
+                value = simpleDark(parameters);
                 initBgTransition(value);
                 easyOut();
-                break; 
+                break;
         };
     };
 

@@ -1,5 +1,5 @@
 import * as PIXI from 'pixi.js';
-import {EFFECT} from "../../effect";
+// import {EFFECT} from "../../effect";
 function b1Init(bannerContainer, params, app, textures){
 	let count = 0; //Global counter
 
@@ -143,12 +143,12 @@ function b1Init(bannerContainer, params, app, textures){
 	const floor = new PIXI.SimpleRope(getTextures('background'), floorPoint);
 	let containerWater = new PIXI.Container();
 	let containerFloor = new PIXI.Container();
-	let causticShader = new EFFECT('caustic', params).getShader();
-	causticShader.blendMode = PIXI.BLEND_MODES.SCREEN;
+	// let causticShader = new EFFECT('caustic', params).getShader();
+	// causticShader.blendMode = PIXI.BLEND_MODES.SCREEN;
 	var water = new PIXI.Sprite();
 	water.width = params.canvasSize.width * devicePixelRatio;
 	water.height = params.canvasSize.height * devicePixelRatio;
-	water.filters = [causticShader];
+	// water.filters = [causticShader];
 	water.mask = mask;
 	containerWater.mask = mask;
 	containerFloor.mask = mask;
@@ -162,12 +162,12 @@ function b1Init(bannerContainer, params, app, textures){
 
 	//SMOKE shader
 	let container = new PIXI.Container();
-	let smokeShader = new EFFECT('smoke', params).getShader();
-	smokeShader.blendMode = PIXI.BLEND_MODES.ADD;
+	// let smokeShader = new EFFECT('smoke', params).getShader();
+	// smokeShader.blendMode = PIXI.BLEND_MODES.ADD;
 	var bg = new PIXI.Sprite();
 	bg.width = params.canvasSize.width  * devicePixelRatio;
 	bg.height = params.canvasSize.height * devicePixelRatio;
-	bg.filters = [smokeShader];
+	// bg.filters = [smokeShader];
 	bannerContainer.addChild(container);
 	container.addChild(bg);
 
@@ -182,8 +182,8 @@ function b1Init(bannerContainer, params, app, textures){
 
 		//params.filter.uniforms.shift = Math.abs(Math.sin(deltaTime));
 
-		smokeShader.uniforms.time += 0.01;
-		causticShader.uniforms.time += 0.011;
+		// smokeShader.uniforms.time += 0.01;
+		// causticShader.uniforms.time += 0.011;
 		
 
 		// make the snake
