@@ -1,14 +1,16 @@
 import { CONTAINER } from './js/container';
 import { uiControllersInit } from './js/uiControllersInit';
 import { bannerDOMTemplate } from './template/banner';
-// size: 1900*620 6/2 k=3
+
 export class BannerBuilder {
-  constructor({ containerId, sizeConfig, data }) {
+  constructor({ containerId, sizeConfig, data, cb }) {
     this.contentData = data;
+    this.cb = cb;
     this.sizeConfig = sizeConfig || {};
     this.container = document.getElementById(containerId);
     this.container.attachShadow({ mode: 'open' });
     this.shRoot = this.container.shadowRoot;
+    this.isRender = false;
 
     // class configs
     this.domElId = {
@@ -23,7 +25,7 @@ export class BannerBuilder {
   }
 
   getHeightByRatio() {
-    return this.canvasW / 3.2;
+    return this.canvasW / 3.2; // 6/2 ratio
   }
 
   getTemplate() {
@@ -62,13 +64,41 @@ export class BannerBuilder {
     this.canvasW = this.shRoot.getElementById(
       this.domElId.canvasId
     ).offsetWidth;
-    this.canvasH = this.getHeightByRatio()
+    this.canvasH = this.getHeightByRatio();
   }
 
   render() {
+    if (this.isRender) return;
+
     this.container.shadowRoot.innerHTML = this.getTemplate();
-    this.updateSizes();
-    this.startCanvasContainer();
+    try {
+      this.updateSizes();
+      this.startCanvasContainer();
+      this.isRender = true;
+      console.log('Banner render');
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  onRender() {
+    console.log('onRender cb');
+    this.cb?.onRender &&  this.cb.onRender();
+  }
+
+  onBtnClick() {
+    console.log('onBtnClick cb');
+    this.cb?.onBtnClick &&  this.cb.onBtnClick();
+  }
+
+  onSlideChange() {
+    console.log('onSlideChange cb');
+    this.cb?.onSlideChange &&  this.cb.onSlideChange();
+  }
+
+  destroy() {
+    this.isRender = false;
+    console.log('Destroy banners');
   }
 }
 

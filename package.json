@@ -1,8 +1,18 @@
 {
   "name": "bb-banner",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
   "version": "0.0.1",
   "description": "bb canvas banners",
-  "main": "index.js",
+  "main": "./dist/bannerCreator.mjs",
+  "module": "./dist/bannerCreator.js",
+  "exports": {
+    ".": {
+      "import": "./dist/bannerCreator.mjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -15,10 +25,12 @@
   "author": "bb-team",
   "license": "ISC",
   "dependencies": {
+    "@vitejs/plugin-legacy": "^2.0.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-standard": "^5.0.0",
     "pixi-spine": "^3.1.0",
     "pixi.js": "^6.5.1",
+    "terser": "^5.15.0",
     "vite": "^3.0.9"
   },
   "devDependencies": {
