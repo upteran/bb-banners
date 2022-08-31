@@ -15,8 +15,17 @@
   "author": "bb-team",
   "license": "ISC",
   "dependencies": {
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-standard": "^5.0.0",
     "pixi-spine": "^3.1.0",
     "pixi.js": "^6.5.1",
     "vite": "^3.0.9"
+  },
+  "devDependencies": {
+    "eslint": "^8.23.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-html": "^7.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.7.1"
   }
 }
