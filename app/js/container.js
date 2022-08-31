@@ -1,7 +1,6 @@
 import * as PIXI from 'pixi.js';
 // import 'pixi-spine';
 import { BANNER } from './banner';
-// import { getJSON } from './json_manager.js';
 import { simpleDark } from '../data/effects/simpleDark';
 import banners from '../data/banners/banners.json';
 // Массив данных из JSON файла

@@ -22,6 +22,10 @@ export class BannerBuilder {
     this.canvasW = null;
   }
 
+  getHeightByRatio() {
+    return this.canvasW / 3.2;
+  }
+
   getTemplate() {
     return bannerDOMTemplate(this.domElId, this.contentData);
   }
@@ -31,12 +35,12 @@ export class BannerBuilder {
       ...this.sizeConfig,
       screenSize: {
         width: this.canvasW,
-        height: this.canvasW / 3.2
+        height: this.getHeightByRatio()
       },
       scaleFactor: this.canvasW / 1600, //Коэфициент маштабирования, 1600 - исходное изображения бекграунда в пикселях
       canvasSize: {
         width: this.canvasW,
-        height: this.canvasW / 3.2 // 6:2 ratio
+        height: this.getHeightByRatio()
       }
     };
   }
@@ -58,7 +62,7 @@ export class BannerBuilder {
     this.canvasW = this.shRoot.getElementById(
       this.domElId.canvasId
     ).offsetWidth;
-    this.canvasH = this.canvasW / 3;
+    this.canvasH = this.getHeightByRatio()
   }
 
   render() {

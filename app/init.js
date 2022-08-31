@@ -17,10 +17,25 @@ const contentData = {
   btnTitle: 'IM Button'
 };
 
+const data = [
+  {
+    id: 1,
+    systemName: 'some1',
+    title: 'Some custom title',
+    description: 'Some description',
+    btnTitle: 'IM Button',
+    btnLink: 'someLink',
+    position: 1,
+    linkCb: () => {
+      console.log('hello')
+    }
+  }
+];
+
 const bannerBuilder = new BannerBuilder({
   containerId: 'banner-c',
   sizeConfig,
-  data: contentData
+  data
 });
 
 bannerBuilder.render();
