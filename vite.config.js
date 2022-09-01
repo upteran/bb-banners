@@ -1,29 +1,39 @@
 import { resolve } from 'path';
-import legacy from '@vitejs/plugin-legacy'
-import { defineConfig } from 'vite';
+import legacy from '@vitejs/plugin-legacy';
+import replace from '@rollup/plugin-replace';
+import { defineConfig, loadEnv } from 'vite';
 
-export default defineConfig({
-  build: {
-    manifest: true,
-    minify: 'esbuild',
-    sourcemap: true,
-    lib: {
-      entry: resolve(__dirname, 'app/bannerCreator.js'),
-      name: 'banner',
-      formats: ['es'],
-      // the proper extensions will be added
-      fileName: 'bannerCreator'
-    },
-    experimental: {
-      renderBuiltUrl: (filename, { type, hostType }) => {
-        console.log('filename', filename);
-        if (type === 'public') {
-          return import.meta.env.SERVICE_HOST + filename;
-        }
-        if (hostType === '.png') {
-          return import.meta.env.SERVICE_HOST + filename;
-        }
-      }
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '');
+  console.log(env.SERVICE_HOST)
+  return {
+    build: {
+      manifest: true,
+      minify: false,
+      // sourcemap: true,
+      rollupOptions: {
+        input: 'app/bannerCreator.js',
+        output: {
+          dir: 'dist',
+          format: 'es'
+        },
+        treeshake: false,
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+        },
+        plugins: [
+          replace({
+            public: [`${env.SERVICE_HOST}`] // replace static public paths with remote prod host
+          })
+        ]
+      },
+      plugins: [
+        legacy({
+          targets: ['defaults', 'not IE 11']
+        })
+      ]
     }
-  }
+  };
 });
