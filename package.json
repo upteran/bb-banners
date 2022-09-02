@@ -6,13 +6,6 @@
   ],
   "version": "0.0.1",
   "description": "bb canvas banners",
-  "main": "./dist/bannerCreator.mjs",
-  "module": "./dist/bannerCreator.js",
-  "exports": {
-    ".": {
-      "import": "./dist/bannerCreator.mjs"
-    }
-  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",

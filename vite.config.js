@@ -5,17 +5,17 @@ import { defineConfig, loadEnv } from 'vite';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
-  console.log(env.SERVICE_HOST)
   return {
     build: {
       manifest: true,
       minify: false,
-      // sourcemap: true,
+      sourcemap: true,
       rollupOptions: {
         input: 'app/bannerCreator.js',
         output: {
           dir: 'dist',
-          format: 'es'
+          format: 'esm',
+          // file: 'index.js'
         },
         treeshake: false,
         manualChunks(id) {
@@ -25,9 +25,11 @@ export default defineConfig(({ mode }) => {
         },
         plugins: [
           replace({
+            delimiters: ['/', ''],
             public: [`${env.SERVICE_HOST}`] // replace static public paths with remote prod host
           })
-        ]
+        ],
+        // external: ['pixi.js']
       },
       plugins: [
         legacy({

@@ -2,7 +2,7 @@ import { CONTAINER } from './js/container';
 import { uiControllersInit } from './js/uiControllersInit';
 import { bannerDOMTemplate } from './template/banner';
 
-export class BannerBuilder {
+class BannerBuilderC {
   constructor({ containerId, sizeConfig, data, cb }) {
     this.contentData = data;
     this.cb = cb;
@@ -83,17 +83,17 @@ export class BannerBuilder {
 
   onRender() {
     console.log('onRender cb');
-    this.cb?.onRender &&  this.cb.onRender();
+    this.cb?.onRender && this.cb.onRender();
   }
 
   onBtnClick() {
     console.log('onBtnClick cb');
-    this.cb?.onBtnClick &&  this.cb.onBtnClick();
+    this.cb?.onBtnClick && this.cb.onBtnClick();
   }
 
   onSlideChange() {
     console.log('onSlideChange cb');
-    this.cb?.onSlideChange &&  this.cb.onSlideChange();
+    this.cb?.onSlideChange && this.cb.onSlideChange();
   }
 
   destroy() {
@@ -101,5 +101,10 @@ export class BannerBuilder {
     console.log('Destroy banners');
   }
 }
+
+// reorder to prevent treeshake
+const BannerBuilder = BannerBuilderC;
+
+export default BannerBuilder;
 
 // https://css-tricks.com/encapsulating-style-and-structure-with-shadow-dom/
