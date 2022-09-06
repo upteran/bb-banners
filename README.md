@@ -8,7 +8,7 @@ frontend proj for bb canvas banners
 
 - [x] responsive canvas
 - [x] генерация путей изображений на сервер, тк запуск на другом домене
-- [] обработка передаваемого массива данных 
+- [x] обработка передаваемого массива данных 
 - [] кеширование данных, изображений и скриптов
 - [] загрузка скриптов с hash id
 - [] определить интерфейс запуска банера
@@ -25,6 +25,7 @@ frontend proj for bb canvas banners
 - [x] minify
 - [] добавить сервис
 - [] добавить docker 
+- [x] graceful shutdown сервера
 
 **работа баннера**
 
@@ -34,16 +35,16 @@ frontend proj for bb canvas banners
 server {
     listen       8090;
     server_name  mywebsite.local.com;
-    root /Users/pezeze/proj/work/bb_web_main/bb-banner/dist/;
+    root /Users/au_tereshkin/work/bb-banner/dist/;
 
     location / {
-        index  bannerCreator.432bf503.js;
-        alias /Users/pezeze/proj/work/bb_web_main/bb-banner/dist/assets/;
+        root /Users/au_tereshkin/work/bb-banner/dist/assets/;
+        index  bannerCreator.js;
     }
 
-    location /banner/ {
-        add_header 'Access-Control-Allow-Origin' '*';
+    location /images/ {
         try_files $uri $uri/;
+        add_header Access-Control-Allow-Origin *;
     }
 
     # redirect server error pages to the static page /50x.html

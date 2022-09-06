@@ -16,8 +16,8 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   return {
     build: {
-      manifest: true,
-      minify: false,
+      manifest: false,
+      minify: true,
       sourcemap: true,
       rollupOptions: {
         preserveEntrySignatures: true,
@@ -25,7 +25,8 @@ export default defineConfig(({ mode }) => {
         output: {
           dir: 'dist',
           format: 'es',
-          exports: 'named'
+          exports: 'named',
+          entryFileNames: `assets/[name].js`
         },
         treeshake: true,
         // manualChunks(id) {
@@ -34,7 +35,6 @@ export default defineConfig(({ mode }) => {
         //   }
         // },
         plugins: [...plugins[mode](env)]
-        // external: ['pixi.js']
       },
       plugins: [
         legacy({

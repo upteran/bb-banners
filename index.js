@@ -11,19 +11,25 @@ let sizeConfig = {
   deviceType: getDeviceType()
 };
 
-const contentData = {
-  title: 'Some custom title',
-  description: 'Some description',
-  btnTitle: 'IM Button'
-};
-
 const data = [
   {
     id: 1,
     systemName: 'some1',
-    title: 'Some custom title',
+    caption: 'Hello im second banner',
     description: 'Some description',
-    btnTitle: 'IM Button',
+    btn: 'IM Button too',
+    btnLink: 'someLink',
+    position: 2,
+    linkCb: () => {
+      console.log('hello');
+    }
+  },
+  {
+    id: 2,
+    systemName: 'some2',
+    caption: 'Some custom caption',
+    description: 'Some description',
+    btn: 'IM Button',
     btnLink: 'someLink',
     position: 1,
     linkCb: () => {

@@ -2,7 +2,7 @@
     "id" : 2,
     "type": "spine",
     "position" :2,
-    "name" : "banner-1",
+    "name" : "some1",
     "caption" : "SpineTest",
     "btn": "Жми на 2!",
     "img" :[
@@ -16,7 +16,7 @@
     "id" : 1,
     "type": "base",
     "position" :1,
-    "name" : "banner-2",
+    "name" : "some2",
     "caption" : "RetroStyle",
     "btn": "Жми на 1!",
     "img" :[

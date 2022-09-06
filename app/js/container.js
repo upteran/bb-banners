@@ -19,13 +19,36 @@ let callback; // Возвращает значение когда транзиш
 
 let btnArrow;
 
+let mergedBanners = banners;
+
+// TODO: перенести все внутрь класса, чтобы удобнее было работать с данными
 class CONTAINER {
-  constructor({ params, root, canvas, container }) {
+  constructor({ params, root, canvas, container, contentData }) {
     parameters = params;
     currentBanner = parameters.steps[0];
     this.root = root;
     this.container = container;
     this.canvas = canvas;
+    // TODO: добавить обработку разных кейсов
+    this.contentData = contentData.reduce((acc, next) => {
+      acc[next.systemName] = next;
+      return acc;
+    }, {});
+    mergedBanners = this.getMergedBannersData();
+  }
+
+  getMergedBannersData() {
+    return banners.map((props) => {
+      const { name } = props;
+      if (this.contentData[name]) {
+        return {
+          ...props,
+          ...this.contentData[name]
+        };
+      } else {
+        return props;
+      }
+    });
   }
 
   // Инициализация сцены
@@ -58,19 +81,19 @@ class CONTAINER {
 
   // Возвращает активный баннер, позицию в очереди, а так же его тип.
   getInfo() {
-    return banners[currentBanner];
+    return mergedBanners[currentBanner];
   }
 
   // Сменить банер на предыдущий в очереди.
   toLeft(button) {
-    if (banners) {
+    if (mergedBanners) {
       shiftBanner(1, button);
     }
   }
 
   // Сменить банер напоследующий в очереди.
   toRight(button) {
-    if (banners) {
+    if (mergedBanners) {
       shiftBanner(1, button);
     }
   }
@@ -120,7 +143,7 @@ class CONTAINER {
 // end class
 
 // Выбираем баннер из массива данных и отрисовываем его
-// banners - массив баннеров
+// mergedBanners - массив баннеров
 // position - позиция в массиве которая будет отрисованна
 function playerBanner(banner, params) {
   addBanner(banner, params);
@@ -164,7 +187,7 @@ function findBannerInQueue(id, params) {
 // Возвращеет элемент баннера по значению position
 function getBannerByPosition(pos) {
   let banner = -1;
-  banners.forEach(item => {
+  mergedBanners.forEach(item => {
     if (item.position === pos) {
       banner = item;
     }
@@ -182,7 +205,6 @@ function shiftBanner(shift, button) {
   } else {
     nextPosition = parameters.steps[step];
   }
-  console.log('asdasd', nextPosition);
   if (nextPosition != undefined) {
     const banner = getBannerByPosition(nextPosition);
     button.interactive = false;

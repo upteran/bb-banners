@@ -54,7 +54,8 @@ export class BannerBuilder {
       params: this.getCanvasParams(),
       root: this.shRoot,
       container: this.shRoot.getElementById(this.domElId.wrapper),
-      canvas: this.shRoot.getElementById(this.domElId.canvasId)
+      canvas: this.shRoot.getElementById(this.domElId.canvasId),
+      contentData: this.contentData
     });
     mainBlock.init();
     mainBlock.startTransition(1);
