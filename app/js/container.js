@@ -36,7 +36,7 @@ class CONTAINER {
       antialias: true,
       view: this.canvas
     });
-    this.root.appendChild(app.view);
+    this.container.appendChild(app.view);
 
     mainBlock = new PIXI.Container(); // Корневой контейнер, в него помещаем контйнеры и сбаннерами (один баннер - один контейнер)
     // mainBlock.scale.set(parameters.scaleFactor, parameters.scaleFactor); //Маштабирует изображения при изменении исходного размера контейнере

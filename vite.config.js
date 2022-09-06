@@ -1,7 +1,16 @@
-import { resolve } from 'path';
 import legacy from '@vitejs/plugin-legacy';
 import replace from '@rollup/plugin-replace';
 import { defineConfig, loadEnv } from 'vite';
+
+const plugins = {
+  development: () => [],
+  production: env => [
+    replace({
+      delimiters: ['/', ''],
+      public: [`${env.SERVICE_HOST}`] // replace static public paths with remote prod host
+    })
+  ]
+};
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
@@ -11,24 +20,20 @@ export default defineConfig(({ mode }) => {
       minify: false,
       sourcemap: true,
       rollupOptions: {
+        preserveEntrySignatures: true,
         input: 'app/bannerCreator.js',
         output: {
           dir: 'dist',
-          format: 'esm',
-          // file: 'index.js'
+          format: 'es',
+          exports: 'named'
         },
-        treeshake: false,
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            return 'vendor';
-          }
-        },
-        plugins: [
-          replace({
-            delimiters: ['/', ''],
-            public: [`${env.SERVICE_HOST}`] // replace static public paths with remote prod host
-          })
-        ],
+        treeshake: true,
+        // manualChunks(id) {
+        //   if (id.includes('node_modules')) {
+        //     return 'vendor';
+        //   }
+        // },
+        plugins: [...plugins[mode](env)]
         // external: ['pixi.js']
       },
       plugins: [

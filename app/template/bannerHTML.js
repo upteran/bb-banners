@@ -9,19 +9,20 @@ export const bannerDOMTemplate = (styles, content) => `
           height: 100%;
       }
       
-      #${styles.titleId}{
+      #${styles.content} {
           position: absolute;
-          top: 250px;
-          left: 160px;
-          color: azure;
-          font-size: 48px;
+          left: 15%;
+          top: 35%;
           z-index: 100;
       }
       
+      #${styles.titleId}{
+          color: azure;
+          font-size: 48px;
+          margin-bottom: 45px;
+      }
+      
        #${styles.btnId} {
-          position: absolute;
-          top: 340px;
-          left: 160px;
           background-color: rgb(255, 238, 0);
           color: rgb(0, 0, 0);
           font-size: 24px;
@@ -29,7 +30,6 @@ export const bannerDOMTemplate = (styles, content) => `
           border: none;
           cursor: pointer;
           border-radius: 5px;
-          z-index: 100;
         }
         
       .${styles.btnId}:hover {
@@ -38,7 +38,9 @@ export const bannerDOMTemplate = (styles, content) => `
   </style>
   <div id="${styles.wrapper}">
     <canvas id="${styles.canvasId}"></canvas>
-    <div id="${styles.titleId}">${content.title}</div>
-    <button id="${styles.btnId}">${content.btnTitle}</button>
+    <div id="${styles.content}">
+        <div id="${styles.titleId}">${content.title}</div>
+        <button id="${styles.btnId}">${content.btnTitle}</button>
+    </div>
   </div>
   `;

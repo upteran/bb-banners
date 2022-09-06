@@ -1,8 +1,8 @@
 import { CONTAINER } from './js/container';
 import { uiControllersInit } from './js/uiControllersInit';
-import { bannerDOMTemplate } from './template/banner';
+import { bannerDOMTemplate } from './template/bannerHTML';
 
-class BannerBuilderC {
+export class BannerBuilder {
   constructor({ containerId, sizeConfig, data, cb }) {
     this.contentData = data;
     this.cb = cb;
@@ -15,6 +15,7 @@ class BannerBuilderC {
     // class configs
     this.domElId = {
       wrapper: 'wrapper',
+      content: 'content',
       canvasId: 'c',
       titleId: 'caption1',
       btnId: 'btn'
@@ -81,30 +82,29 @@ class BannerBuilderC {
     }
   }
 
+  // callback отрисовки банера
   onRender() {
     console.log('onRender cb');
     this.cb?.onRender && this.cb.onRender();
   }
 
+  // callback клика prev, next кнопки банера
   onBtnClick() {
     console.log('onBtnClick cb');
     this.cb?.onBtnClick && this.cb.onBtnClick();
   }
 
+  // callback смены слайда
   onSlideChange() {
     console.log('onSlideChange cb');
     this.cb?.onSlideChange && this.cb.onSlideChange();
   }
 
+  // callback удаление банера, освобождение памяти
   destroy() {
     this.isRender = false;
     console.log('Destroy banners');
   }
 }
-
-// reorder to prevent treeshake
-const BannerBuilder = BannerBuilderC;
-
-export default BannerBuilder;
 
 // https://css-tricks.com/encapsulating-style-and-structure-with-shadow-dom/
