@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "PORT=8090 node server.js"
+    "serve": "SERVE_PORT=8090 node server.js"
   },
   "repository": {
     "type": "git",
