@@ -2,6 +2,7 @@ export const bannerDOMTemplate = (styles, content) => `
   <style>
       #${styles.wrapper} {
         position: relative;
+        z-index: 10;
       }
       #${styles.canvasId} {
           position: relative;
@@ -11,7 +12,7 @@ export const bannerDOMTemplate = (styles, content) => `
       
       #${styles.content} {
           position: absolute;
-          left: 15%;
+          left: 10%;
           top: 35%;
           z-index: 100;
       }
