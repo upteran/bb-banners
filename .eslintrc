@@ -1,0 +1,17 @@
+{
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "plugins": ["standard", "prettier"],
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "rules": {
+    "indent": ["error", 2],
+    "class-methods-use-this": "off",
+    "prettier/prettier": "error"
+  },
+  "globals": {}
+}

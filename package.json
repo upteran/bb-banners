@@ -1,12 +1,14 @@
 {
   "name": "bb-banner",
+  "files": [
+    "dist"
+  ],
   "version": "0.0.1",
   "description": "bb canvas banners",
-  "main": "index.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "serve": "PORT=8090 node server.js"
   },
   "repository": {
     "type": "git",
@@ -15,8 +17,22 @@
   "author": "bb-team",
   "license": "ISC",
   "dependencies": {
+    "@fastify/static": "^6.5.0",
+    "@rollup/plugin-replace": "^4.0.0",
+    "@vitejs/plugin-legacy": "^2.0.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-standard": "^5.0.0",
+    "fastify": "^4.5.3",
     "pixi-spine": "^3.1.0",
     "pixi.js": "^6.5.1",
-    "vite": "^3.0.7"
+    "terser": "^5.15.0",
+    "vite": "^3.0.9"
+  },
+  "devDependencies": {
+    "eslint": "^8.23.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-html": "^7.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.7.1"
   }
 }
