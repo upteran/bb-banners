@@ -21,7 +21,10 @@ fastify.register(fStatic, {
 // Run the server!
 const start = async () => {
   try {
-    await fastify.listen({ host: '0.0.0.0', port: process.env.PORT });
+    await fastify.listen({
+      host: process.env.SERVE_HOST || 'localhost',
+      port: process.env.SERVE_PORT
+    });
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
