@@ -2,16 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link rel = 'stylesheet' href = './app/style.css'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+    <style>
+      #banner-c {
+        width: 100%;
+        height: auto;
+      }
+      #wrap {
+        width: 1900px;
+        max-width: 100%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+      }
+    </style>
   </head>
   <body>
-<!--    <canvas id='c'></canvas>-->
-<!--    <div id='caption1'>Тут будет подпись к баннеру</div>-->
-<!--    <button id="btn">Давай жми!</button>-->
-    <div id="banner-c" />
+    <!--    <canvas id='c'></canvas>-->
+    <!--    <div id='caption1'>Тут будет подпись к баннеру</div>-->
+    <!--    <button id="btn">Давай жми!</button>-->
+    <div id="wrap">
+      <div id="banner-c" />
+    </div>
     <script type="module" src="/index.js"></script>
   </body>
 </html>
