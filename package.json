@@ -9,7 +9,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "serve": "node server.js"
+    "serve": "PORT=8090 node server.js"
   },
   "repository": {
     "type": "git",

@@ -25,7 +25,7 @@ frontend proj for bb canvas banners
 - [x] minify
 - [] добавить сервис
 - [] добавить docker 
-- [x] graceful shutdown сервера
+- [] graceful shutdown сервера
 
 **работа баннера**
 

@@ -1,7 +1,12 @@
-FROM nginx:1.23.1
+FROM node:16
 
-COPY default.conf.template /etc/nginx/conf.d/default.conf.template
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY static-html /usr/share/nginx/html
+ENV SERVICE_HOST=http://localhost:49160
+ENV PORT=8090
 
-CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
+WORKDIR /app/
+COPY package*.json ./
+COPY . .
+RUN yarn install
+RUN yarn build
+EXPOSE 8090
+CMD [ "node", "server.js" ]

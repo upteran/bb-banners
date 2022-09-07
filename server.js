@@ -1,30 +1,27 @@
 // Require the framework and instantiate it
 const fastify = require('fastify')({ logger: true });
 const path = require('path');
-const fs = require('fs');
 const fStatic = require('@fastify/static');
-
 
 fastify.register(fStatic, {
   root: path.join(__dirname, 'dist/images'),
-  prefix: '/images/', // optional: default '/'
-})
-
-// Declare a route
-fastify.get('/', async (request, reply) => {
-  try {
-    const filePath = path.resolve(__dirname, 'dist/assets/bannerCreator.js');
-    const stream = fs.createReadStream(filePath);
-    reply.send(stream).type('application/js').code(200);
-  } catch (e) {
-    console.error(e);
+  prefix: '/images/',
+  setHeaders: res => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
   }
+});
+
+fastify.register(fStatic, {
+  root: path.join(__dirname, '/dist/assets/'),
+  prefix: '/',
+  index: 'bannerCreator.js',
+  decorateReply: false
 });
 
 // Run the server!
 const start = async () => {
   try {
-    await fastify.listen({ port: 8090 });
+    await fastify.listen({ host: '0.0.0.0', port: process.env.PORT });
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
