@@ -1,5 +1,6 @@
 import legacy from '@vitejs/plugin-legacy';
 import replace from '@rollup/plugin-replace';
+import resolve from '@rollup/plugin-node-resolve';
 import { defineConfig, loadEnv } from 'vite';
 
 const plugins = {
@@ -17,7 +18,7 @@ export default defineConfig(({ mode }) => {
   return {
     build: {
       manifest: false,
-      minify: true,
+      minify: false,
       sourcemap: true,
       rollupOptions: {
         preserveEntrySignatures: true,
@@ -34,6 +35,11 @@ export default defineConfig(({ mode }) => {
         //     return 'vendor';
         //   }
         // },
+        external: ['pixi.js', 'pixi-spine'],
+        globals: {
+          'pixi.js': 'pixi.js',
+          'pixi-spine': 'pixi-spine'
+        },
         plugins: [...plugins[mode](env)]
       },
       plugins: [

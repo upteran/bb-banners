@@ -18,6 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "@fastify/static": "^6.5.0",
+    "@rollup/plugin-node-resolve": "^14.0.0",
     "@rollup/plugin-replace": "^4.0.0",
     "@vitejs/plugin-legacy": "^2.0.1",
     "eslint-config-airbnb": "^19.0.4",

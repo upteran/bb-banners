@@ -1,21 +1,22 @@
-import { Spine } from 'pixi-spine';
+import * as pixiSpine from 'pixi-spine';
+import * as PIXI from 'pixi.js';
 //import {EFFECT} from '../js/effect.js';
 function b2Init(bannerContainer, params, app, textures) {
   app.loader.destroy(); //Нужно очистить ресурсы перед повторным запуском (временное решение)
   app.loader
-    .add('rider', 'js/banners/spine/raptor/export/raptor_pro.json')
+    .add('rider', 'app/js/banners/spine/raptor/export/raptor_pro.json')
     .load(onRiderLoader);
   //app.stage.interactive = true;
 
-  function onRiderLoader(name, res){
-    const rider = new Spine(res.rider.spineData);
+  function onRiderLoader(name, res) {
+    const rider = new pixiSpine.Spine(res.rider.spineData);
     rider.interactive = true;
 
     rider.skeleton.setSkinByName('default');
     rider.skeleton.setSlotsToSetupPose();
 
-    rider.stateData.setMix('walk', 'roar',0.2);
-    rider.stateData.setMix('roar', 'walk',0.3);
+    rider.stateData.setMix('walk', 'roar', 0.2);
+    rider.stateData.setMix('roar', 'walk', 0.3);
 
     rider.state.setAnimation(0, 'walk', true);
 
@@ -27,13 +28,14 @@ function b2Init(bannerContainer, params, app, textures) {
 
     const scale = Math.min(
       (app.screen.width * 0.85) / cage.width,
-      (app.screen.height * 0.85) / cage.height);  
+      (app.screen.height * 0.85) / cage.height
     );
 
     cage.scale.set(scale, scale);
     cage.position.set(
       (app.screen.width - cage.width) * 0.5,
-      (app.screen.height - cage.height) * 0.5);
+      (app.screen.height - cage.height) * 0.5
+    );
     bannerContainer.addChild(cage);
 
     //Listners
@@ -52,4 +54,5 @@ function b2Init(bannerContainer, params, app, textures) {
     });
   }
 }
+
 export { b2Init };
