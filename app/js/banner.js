@@ -1,4 +1,4 @@
-import * as PIXI from 'pixi.js';
+import { PIXI } from '../pixiLoader';
 import { b1Init } from './banners/girl1/b1.js';
 import {b2Init} from './banners/spine/b2.js';
 class BANNER {

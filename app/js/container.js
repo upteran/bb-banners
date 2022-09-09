@@ -1,4 +1,4 @@
-import * as PIXI from 'pixi.js';
+import { PIXI } from '../pixiLoader';
 // import 'pixi-spine';
 import { BANNER } from './banner';
 import { simpleDark } from '../data/effects/simpleDark';

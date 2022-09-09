@@ -35,11 +35,11 @@ export default defineConfig(({ mode }) => {
         //     return 'vendor';
         //   }
         // },
-        external: ['pixi.js', 'pixi-spine'],
-        globals: {
-          'pixi.js': 'pixi.js',
-          'pixi-spine': 'pixi-spine'
-        },
+        // external: ['/pixiLoader/', 'pixi.js', 'pixi-spine'],
+        // globals: {
+        //   'PIXI': 'pixiLoader',
+        //   'pxSpine': 'pixiLoader'
+        // },
         plugins: [...plugins[mode](env)]
       },
       plugins: [

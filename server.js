@@ -15,7 +15,10 @@ fastify.register(fStatic, {
   root: path.join(__dirname, '/dist/assets/'),
   prefix: '/',
   index: 'bannerCreator.js',
-  decorateReply: false
+  decorateReply: false,
+  setHeaders: res => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+  }
 });
 
 // Run the server!

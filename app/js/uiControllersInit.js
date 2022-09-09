@@ -1,5 +1,5 @@
 //Отрисовка элементов управления
-import * as PIXI from 'pixi.js';
+import { PIXI } from '../pixiLoader';
 
 //Отрисовка элементов управления
 export function uiControllersInit(mainBlock, config) {

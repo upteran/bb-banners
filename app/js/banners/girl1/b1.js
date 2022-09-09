@@ -1,4 +1,4 @@
-import * as PIXI from 'pixi.js';
+import { PIXI } from '../../../pixiLoader';
 // import {EFFECT} from "../../effect";
 function b1Init(bannerContainer, params, app, textures) {
   let count = 0; //Global counter

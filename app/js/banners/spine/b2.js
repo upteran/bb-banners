@@ -1,5 +1,5 @@
-import * as pixiSpine from 'pixi-spine';
-import * as PIXI from 'pixi.js';
+import { PIXI } from '../../../pixiLoader';
+import { Spine } from 'pixi-spine';
 //import {EFFECT} from '../js/effect.js';
 function b2Init(bannerContainer, params, app, textures) {
   app.loader.destroy(); //Нужно очистить ресурсы перед повторным запуском (временное решение)
