@@ -12,8 +12,8 @@ fastify.register(fStatic, {
 });
 
 fastify.register(fStatic, {
-  root: path.join(__dirname, 'dist/scripts'),
-  prefix: '/scripts/',
+  root: path.join(__dirname, 'dist/external'),
+  prefix: '/external/',
   decorateReply: false,
   setHeaders: res => {
     res.setHeader('Access-Control-Allow-Origin', '*');
