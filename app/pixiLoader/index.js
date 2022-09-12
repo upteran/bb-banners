@@ -1,11 +1,11 @@
-// import * as PIXI from 'pixi.js';
+import { scriptLoader } from './scriptLoader';
 
+const x = await scriptLoader.load();
+
+console.log(window.PIXI.spine)
 
 const PIXI = window.PIXI;
-// import * as pxSpine from 'pixi-spine';
-// const pxSpine = window.PIXI.spine;
 
 export {
-  PIXI,
-  // pxSpine
+  PIXI
 };

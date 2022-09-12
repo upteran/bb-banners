@@ -1,15 +1,12 @@
-import { PIXI } from '../../../pixiLoader';
-import { Spine } from 'pixi-spine';
-//import {EFFECT} from '../js/effect.js';
+const src = '/public/data/spine/raptor/export/raptor_pro.json';
+
 function b2Init(bannerContainer, params, app, textures) {
   app.loader.destroy(); //Нужно очистить ресурсы перед повторным запуском (временное решение)
-  app.loader
-    .add('rider', 'app/js/banners/spine/raptor/export/raptor_pro.json')
-    .load(onRiderLoader);
+  app.loader.add('rider', src).load(onRiderLoader);
   //app.stage.interactive = true;
 
   function onRiderLoader(name, res) {
-    const rider = new pixiSpine.Spine(res.rider.spineData);
+    const rider = new PIXI.spine.Spine(res.rider.spineData);
     rider.interactive = true;
 
     rider.skeleton.setSkinByName('default');

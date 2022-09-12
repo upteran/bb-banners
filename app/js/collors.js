@@ -1,4 +1,3 @@
-import { PIXI } from '../pixiLoader';
 //Отрисовывает градиентное значение в canvas и возвращает в виде PIXI текстуры
 function gradient(from, to) {
   const c = document.createElement('canvas');

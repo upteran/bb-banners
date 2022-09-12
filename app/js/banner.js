@@ -1,6 +1,6 @@
-import { PIXI } from '../pixiLoader';
 import { b1Init } from './banners/girl1/b1.js';
 import {b2Init} from './banners/spine/b2.js';
+
 class BANNER {
   constructor(item, mainBlock, params, app, textures, view) {
     this._item = item;

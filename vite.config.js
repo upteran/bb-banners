@@ -1,6 +1,7 @@
 import legacy from '@vitejs/plugin-legacy';
 import replace from '@rollup/plugin-replace';
 import resolve from '@rollup/plugin-node-resolve';
+import topLevelAwait from "vite-plugin-top-level-await";
 import { defineConfig, loadEnv } from 'vite';
 
 const plugins = {
@@ -18,7 +19,7 @@ export default defineConfig(({ mode }) => {
   return {
     build: {
       manifest: false,
-      minify: false,
+      minify: true,
       sourcemap: true,
       rollupOptions: {
         preserveEntrySignatures: true,
@@ -30,17 +31,10 @@ export default defineConfig(({ mode }) => {
           entryFileNames: `assets/[name].js`
         },
         treeshake: true,
-        // manualChunks(id) {
-        //   if (id.includes('node_modules')) {
-        //     return 'vendor';
-        //   }
-        // },
-        // external: ['/pixiLoader/', 'pixi.js', 'pixi-spine'],
-        // globals: {
-        //   'PIXI': 'pixiLoader',
-        //   'pxSpine': 'pixiLoader'
-        // },
-        plugins: [...plugins[mode](env)]
+        globals: {
+          'PIXI': 'PIXI',
+        },
+        plugins: [...plugins[mode](env), topLevelAwait({})]
       },
       plugins: [
         legacy({
