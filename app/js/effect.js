@@ -1,4 +1,3 @@
-import * as PIXI from 'pixi.js';
 import { smoke } from '../data/effects/smoke.js';
 import { caustic } from '../data/effects/caustic.js';
 let effect, params, value;

@@ -1,6 +1,6 @@
-import * as PIXI from 'pixi.js';
 import { b1Init } from './banners/girl1/b1.js';
-// import {b2Init} from './banners/spine/b2.js';
+import {b2Init} from './banners/spine/b2.js';
+
 class BANNER {
   constructor(item, mainBlock, params, app, textures, view) {
     this._item = item;
@@ -21,7 +21,7 @@ class BANNER {
         textUpdate(this._item, this._view);
         break;
       case 2:
-        // b2Init(bannerContainer, this._params, this._app, this._texture);
+        b2Init(bannerContainer, this._params, this._app, this._texture);
         textUpdate(this._item, this._view);
         break;
     }

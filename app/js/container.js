@@ -1,8 +1,6 @@
-import * as PIXI from 'pixi.js';
-// import 'pixi-spine';
 import { BANNER } from './banner';
 import { simpleDark } from '../data/effects/simpleDark';
-import banners from '../data/banners/banners.json';
+import banners from '/app/data/banners/banners.json';
 // Массив данных из JSON файла
 let app;
 // let bannerUrl = '../data/banners/banners.json'; //Путь к JSON файлу с описанием баннеров

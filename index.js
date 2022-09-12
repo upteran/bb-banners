@@ -43,5 +43,3 @@ const bannerBuilder = new BannerBuilder({
   sizeConfig,
   data
 });
-
-bannerBuilder.render();

@@ -1,9 +1,12 @@
 import { CONTAINER } from './js/container';
 import { uiControllersInit } from './js/uiControllersInit';
 import { bannerDOMTemplate } from './template/bannerHTML';
+import { scriptLoader } from './pixiLoader/scriptLoader';
 
 export class BannerBuilder {
   constructor({ containerId, sizeConfig, data, cb }) {
+    console.log('load class');
+    scriptLoader.load(cb?.onScriptLoad || this.render);
     this.contentData = data;
     this.cb = cb;
     this.sizeConfig = sizeConfig || {};
@@ -23,6 +26,14 @@ export class BannerBuilder {
 
     this.canvasH = null;
     this.canvasW = null;
+  }
+
+  async startExternalScriptFetch() {
+    try {
+      await scriptLoader.load();
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   getHeightByRatio() {
@@ -69,9 +80,9 @@ export class BannerBuilder {
     this.canvasH = this.getHeightByRatio();
   }
 
-  render() {
+  render = () => {
     if (this.isRender) return;
-
+    console.log(window.PIXI.spine.Spine)
     this.container.shadowRoot.innerHTML = this.getTemplate();
     try {
       this.updateSizes();
