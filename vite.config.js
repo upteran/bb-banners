@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
   return {
     build: {
       manifest: false,
-      minify: true,
+      minify: false,
       sourcemap: true,
       rollupOptions: {
         preserveEntrySignatures: true,
