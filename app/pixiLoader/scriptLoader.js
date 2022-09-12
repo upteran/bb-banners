@@ -3,7 +3,7 @@ class ScriptLoader {
     this.pixiSrc =
       'https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.5.1/browser/pixi.min.js';
     this.pixiSpineSrc =
-      '/public/scripts/pixi-spine/dist/pixi-spine-4.0.min.umd.js';
+      '/public/external/pixi-spine/dist/pixi-spine-4.0.min.umd.js';
   }
 
   async load(cb) {
