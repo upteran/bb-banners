@@ -1,7 +1,6 @@
 import legacy from '@vitejs/plugin-legacy';
 import replace from '@rollup/plugin-replace';
-import resolve from '@rollup/plugin-node-resolve';
-import topLevelAwait from "vite-plugin-top-level-await";
+import topLevelAwait from 'vite-plugin-top-level-await';
 import { defineConfig, loadEnv } from 'vite';
 
 const plugins = {
@@ -32,7 +31,7 @@ export default defineConfig(({ mode }) => {
         },
         treeshake: true,
         globals: {
-          'PIXI': 'PIXI',
+          PIXI: 'PIXI'
         },
         plugins: [...plugins[mode](env), topLevelAwait({})]
       },
